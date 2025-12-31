@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { basicAuth } from "hono/basic-auth";
 import { serveStatic } from "hono/bun";
 import { IndexPage } from "./pages/index";
+import { SubmitPage } from "./pages/submit";
 
 const app = new Hono();
 
@@ -17,7 +18,7 @@ app.get("/", (c) => {
 });
 
 app.get("/submit", auth, (c) => {
-	return c.html(<IndexPage />);
+	return c.html(<SubmitPage />);
 });
 
 export default app;

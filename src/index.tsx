@@ -4,6 +4,8 @@ import { Hono } from "hono";
 import { basicAuth } from "hono/basic-auth";
 import { serveStatic } from "hono/bun";
 import z from "zod";
+import { db } from "./db";
+import { entriesTable } from "./db/schema";
 import { IndexPage } from "./pages/index";
 import { SubmitPage } from "./pages/submit";
 
@@ -39,10 +41,17 @@ app.post(
 			notes: z.string(),
 		}),
 	),
-	(c) => {
+	async (c) => {
 		const form = c.req.valid("form");
 
-		console.log({ form });
+		const result = await db
+			.insert(entriesTable)
+			.values({
+				...form,
+			})
+			.execute();
+
+		// TODO: redirect to individual entry page
 
 		return c.html(<SubmitPage />);
 	},

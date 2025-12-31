@@ -22,6 +22,7 @@ export const SubmitPage: FC = () => {
             id="country-code"
             name="country-code"
             maxlength={4}
+            autofocus
           />
         </div>
 

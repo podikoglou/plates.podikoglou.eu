@@ -5,6 +5,7 @@ export const Layout: FC = (props) => {
 		<html lang="en">
 			<head>
 				<link rel="stylesheet" href="/static/style.css" />
+				<link rel="stylesheet" href="/static/recursive.css" />
 			</head>
 			<body>{props.children}</body>
 		</html>

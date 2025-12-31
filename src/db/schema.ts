@@ -14,4 +14,5 @@ export const entriesTable = sqliteTable("entries", {
 	text: text(),
 	spottedOn: integer({ mode: "timestamp" }),
 	notes: text(),
+	createdAt: integer({ mode: "timestamp" }).$defaultFn(() => new Date()),
 });

@@ -1,13 +1,16 @@
 import { Hono } from "hono";
 import { serveStatic } from "hono/bun";
 import { IndexPage } from "./pages/index";
+import type { Context } from "./context";
 
 const app = new Hono();
 
 app.use("/static/*", serveStatic({ root: "./" }));
 
 app.get("/", (c) => {
-  return c.html(<IndexPage />);
+  const context: Context = { userId: "mock" };
+
+  return c.html(<IndexPage context={context} />);
 });
 
 export default app;

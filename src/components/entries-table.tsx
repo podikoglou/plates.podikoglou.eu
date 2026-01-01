@@ -3,6 +3,7 @@ import { css } from "hono/css";
 import type { FC } from "hono/jsx";
 import type { entriesTable } from "../db/schema";
 import { plateCountryToCountryCode, plateCountryToFlagUrl } from "../flags";
+import { Country } from "./country";
 
 export const EntriesTable: FC<{
 	entries: (typeof entriesTable.$inferSelect)[];
@@ -37,16 +38,7 @@ export const EntriesTable: FC<{
 						</td>
 						<td class={thClass}>
 							{entry.countryCode ? (
-								<>
-									{plateCountryToCountryCode[entry.countryCode] ? (
-										<img
-											src={plateCountryToFlagUrl(entry.countryCode)}
-											alt="flag"
-										/>
-									) : null}
-
-									{entry.countryCode}
-								</>
+								<Country plateCountryCode={entry.countryCode} />
 							) : null}
 						</td>
 						<td class={thClass}>{entry.text ?? "-"}</td>

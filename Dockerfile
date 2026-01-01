@@ -18,9 +18,10 @@ WORKDIR /app
 COPY --from=install /temp/prod/node_modules node_modules
 
 # copy source code
-COPY package.json bun.lock ./
+COPY package.json bun.lock tsconfig.json ./
 COPY src ./src
 COPY static ./static
+COPY drizzle ./drizzle
 
 # create directory for database with proper permissions
 RUN mkdir -p /app/data && chown -R bun:bun /app/data

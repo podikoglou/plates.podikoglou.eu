@@ -11,6 +11,9 @@ export const Navbar: FC = () => {
 
 			<div>
 				<li>
+					<a href="https://github.com/podikoglou/plates.podikoglou.eu">code</a>
+				</li>
+				<li>
 					<a href="/submit">submit</a>
 				</li>
 			</div>

@@ -1,3 +1,4 @@
+import { desc } from "drizzle-orm";
 import type { FC } from "hono/jsx";
 import { db } from "../db";
 import { entriesTable } from "../db/schema";
@@ -7,7 +8,7 @@ export const RecentEntries: FC = async () => {
 	const entries = await db
 		.select()
 		.from(entriesTable)
-		.orderBy(entriesTable.createdAt)
+		.orderBy(desc(entriesTable.spottedOn))
 		.limit(20)
 		.execute();
 

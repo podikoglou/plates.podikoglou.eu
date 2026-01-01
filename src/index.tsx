@@ -14,7 +14,7 @@ const app = new Hono();
 
 const auth = basicAuth({
 	username: process.env.APP_USERNAME!,
-	password: process.env.PASSWORD!,
+	password: process.env.APP_PASSWORD!,
 });
 
 app.use("/static/*", serveStatic({ root: "./" }));

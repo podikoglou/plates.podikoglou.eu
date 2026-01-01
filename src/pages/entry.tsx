@@ -1,25 +1,15 @@
 import { format } from "date-fns";
-import { eq, sql } from "drizzle-orm";
 import { css, cx } from "hono/css";
 import type { FC } from "hono/jsx";
 import { Aside } from "../components/aside";
 import { Country } from "../components/country";
 import { Layout } from "../components/layout";
 import { Navbar } from "../components/navbar";
-import { db } from "../db";
-import { entriesTable } from "../db/schema";
+import { findEntry } from "../service/entry";
 import { ErrorPage } from "./error";
 
-const entryQuery = db
-	.select()
-	.from(entriesTable)
-	.where(eq(entriesTable.id, sql.placeholder("id")))
-	.limit(1)
-	.prepare();
-
 export const EntryPage: FC<{ entryId: number }> = async ({ entryId }) => {
-	const results = await entryQuery.execute({ id: entryId });
-	const entry = results[0];
+	const entry = await findEntry(entryId);
 
 	if (!entry) {
 		return <ErrorPage error="Entry not found" />;

@@ -10,6 +10,7 @@ import { EntryPage } from "./pages/entry";
 import { ErrorPage } from "./pages/error";
 import { IndexPage } from "./pages/index";
 import { SubmitPage } from "./pages/submit";
+import { insertEntry } from "./service/entry";
 
 const app = new Hono();
 
@@ -65,12 +66,7 @@ app.post(
 	async (c) => {
 		const form = c.req.valid("form");
 
-		const result = await db
-			.insert(entriesTable)
-			.values({
-				...form,
-			})
-			.execute();
+		await insertEntry(form);
 
 		// TODO: redirect to individual entry page
 

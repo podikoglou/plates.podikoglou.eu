@@ -43,6 +43,6 @@ export const plateCountryToFlagUrl = (
 	const countryCode = plateCountryToCountryCode[plateCountry];
 
 	return countryCode
-		? `https://flagsapi.com/${countryCode}/flat/16.png`
+		? `https://flagsapi.com/${countryCode}/flat/24.png`
 		: undefined;
 };

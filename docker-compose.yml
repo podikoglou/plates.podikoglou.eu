@@ -6,8 +6,8 @@ services:
     environment:
       - NODE_ENV=production
       - DB_FILE_NAME=/app/data/lp.db
-      - USERNAME=${USERNAME}
       - PASSWORD=${PASSWORD}
+      - APP_USERNAME=${APP_USERNAME}
     volumes:
       - ./data:/app/data
     restart: unless-stopped

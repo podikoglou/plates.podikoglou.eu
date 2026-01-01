@@ -26,6 +26,6 @@
     "dev": "bun --hot src/index.tsx",
     "start": "bun src/index.tsx",
     "format": "biome check --write src/",
-    "prepare": "husky"
+    "prepare": "husky || true"
   }
 }

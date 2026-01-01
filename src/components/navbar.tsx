@@ -5,7 +5,7 @@ export const Navbar: FC = () => {
 		<nav>
 			<div>
 				<li>
-					<a href="/">LPDB</a>
+					<a href="/">plates</a>
 				</li>
 			</div>
 

@@ -1,13 +1,8 @@
-import { format } from "date-fns";
 import { css } from "hono/css";
 import type { FC } from "hono/jsx";
-import type { entriesTable } from "../db/schema";
-import { plateCountryToCountryCode, plateCountryToFlagUrl } from "../flags";
-import { Country } from "./country";
+import { RecentEntriesPage } from "../pages/recent-entries";
 
-export const EntriesTable: FC<{
-	entries: (typeof entriesTable.$inferSelect)[];
-}> = async ({ entries }) => {
+export const EntriesTable: FC = async () => {
 	const thClass = css`
     font-weight: normal;
     /*border-bottom: 1px solid #ddd;*/
@@ -20,7 +15,7 @@ export const EntriesTable: FC<{
   `;
 
 	return (
-		<table class={tableClass}>
+		<table class={tableClass} id="recent-entries-table">
 			<thead>
 				<tr>
 					<th class={thClass}>ID</th>
@@ -31,22 +26,7 @@ export const EntriesTable: FC<{
 			</thead>
 
 			<tbody>
-				{entries.map((entry) => (
-					<tr>
-						<td class={thClass}>
-							<a href={`/entry/${entry.id}`}>#{entry.id}</a>
-						</td>
-						<td class={thClass}>
-							{entry.countryCode ? (
-								<Country plateCountryCode={entry.countryCode} />
-							) : null}
-						</td>
-						<td class={thClass}>{entry.text ?? "-"}</td>
-						<td class={thClass}>
-							{entry.spottedOn ? format(entry.spottedOn, "MMM yyyy") : ""}
-						</td>
-					</tr>
-				))}
+				<RecentEntriesPage page={0} />
 			</tbody>
 		</table>
 	);

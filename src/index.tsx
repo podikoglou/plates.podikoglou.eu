@@ -4,12 +4,10 @@ import { Hono } from "hono";
 import { basicAuth } from "hono/basic-auth";
 import { serveStatic } from "hono/bun";
 import z from "zod";
-import { RecentEntries } from "./components/recent-entries";
-import { db } from "./db";
-import { entriesTable } from "./db/schema";
 import { EntryPage } from "./pages/entry";
 import { ErrorPage } from "./pages/error";
 import { IndexPage } from "./pages/index";
+import { RecentEntriesPage } from "./pages/recent-entries";
 import { SubmitPage } from "./pages/submit";
 import { insertEntry } from "./services/entry";
 
@@ -41,7 +39,7 @@ app.get(
 	(c) => {
 		const page = c.req.valid("param").page;
 
-		return c.html(<RecentEntries page={page} />);
+		return c.html(<RecentEntriesPage page={page} />);
 	},
 );
 

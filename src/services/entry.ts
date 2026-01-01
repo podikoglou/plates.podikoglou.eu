@@ -16,6 +16,7 @@ const recentEntriesQuery = db
 	.select()
 	.from(entriesTable)
 	.orderBy(desc(entriesTable.id))
+	.offset(sql`${sql.placeholder("page")} * 20`) // <-- this works, despite the type error. not sure how to fix it
 	.limit(20)
 	.prepare();
 
@@ -27,8 +28,10 @@ export const findEntry = async (
 	return results[0];
 };
 
-export const findRecentEntries = async (): Promise<EntrySelect[]> => {
-	return recentEntriesQuery.execute();
+export const findRecentEntries = async (
+	page: number,
+): Promise<EntrySelect[]> => {
+	return recentEntriesQuery.execute({ page });
 };
 
 export const insertEntry = async (data: EntryInsert) => {

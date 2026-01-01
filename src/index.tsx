@@ -4,6 +4,7 @@ import { Hono } from "hono";
 import { basicAuth } from "hono/basic-auth";
 import { serveStatic } from "hono/bun";
 import z from "zod";
+import { RecentEntries } from "./components/recent-entries";
 import { db } from "./db";
 import { entriesTable } from "./db/schema";
 import { EntryPage } from "./pages/entry";
@@ -26,15 +27,30 @@ app.get("/", (c) => {
 });
 
 app.get(
+	"/recent-entries/:page",
+	zValidator(
+		"param",
+		z.object({
+			page: z.string().transform((id) =>
+				/* this sucks really bad.
+           it can parse strings like 3489afhsdoiu as 3489 */
+				parseInt(id, 10),
+			),
+		}),
+	),
+	(c) => {
+		const page = c.req.valid("param").page;
+
+		return c.html(<RecentEntries page={page} />);
+	},
+);
+
+app.get(
 	"/entry/:id",
 	zValidator(
 		"param",
 		z.object({
-			id: z.string().transform((id) =>
-				/* this sucks really bad.
-           it can parse strings like 3489afhsdoiu as 3489 */
-				parseInt(id),
-			),
+			id: z.string().transform((id) => parseInt(id, 10)),
 		}),
 	),
 	(c) => {

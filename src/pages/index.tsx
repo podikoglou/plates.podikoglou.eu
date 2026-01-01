@@ -17,7 +17,7 @@ export const IndexPage: FC = () => {
 
 			<h2>Recent Entries</h2>
 
-			<RecentEntries />
+			<RecentEntries page={0} />
 
 			<Aside text="The spotted dates might be approximated. Don't ask how." />
 		</Layout>

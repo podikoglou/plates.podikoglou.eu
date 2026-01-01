@@ -10,6 +10,7 @@ export const Country: FC<{ plateCountryCode: string }> = ({
 	const spanClass = css`
     display: flex;
     column-gap: 10px;
+    align-items: center;
   `;
 
 	return (

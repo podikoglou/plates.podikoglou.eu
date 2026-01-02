@@ -25,7 +25,7 @@ export const plateCountryToCountryCode: Record<string, string> = {
 	UA: "UA",
 	MO: "MO",
 	DK: "DK",
-	CZ: "CX",
+	CZ: "CZ",
 	L: "LU",
 	S: "SE",
 	// GE: "",

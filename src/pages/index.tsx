@@ -10,8 +10,9 @@ export const IndexPage: FC = () => {
 
 			<h1>Alex's License Plates Database</h1>
 			<p>
-				Here you can find a database of all the license plates I've spotted over
-				the past few years.
+				Here you can find a database of some cool license plates I've spotted
+				over the past few years (mostly in Greece, perhaps some in neighbouring
+				countries).
 			</p>
 
 			<h2>Recent Entries</h2>
